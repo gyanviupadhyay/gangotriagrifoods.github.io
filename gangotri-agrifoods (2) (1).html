@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gangotri Agrifoods Pvt. Ltd. – Biomass Pellets</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --forest:#1a3a2a; --deep:#0e2218; --leaf:#2d6a4f;
+  --sage:#52b788; --lime:#95d5b2; --gold:#c9a84c;
+  --cream:#f5f0e8; --warm:#faf7f2; --text:#1c1c1c; --muted:#6b7c6e;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--warm);color:var(--text);overflow-x:hidden;}
+
+/* FADE-UP — starts visible, animates up on scroll */
+.fade-up{opacity:1;transform:none;}
+.fade-up.will-animate{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease;}
+.fade-up.will-animate.visible{opacity:1;transform:none;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:1rem 3rem;background:rgba(14,34,24,.96);backdrop-filter:blur(14px);border-bottom:1px solid rgba(149,213,178,.12);transition:background .3s;}
+.nav-logo{display:flex;align-items:center;gap:.75rem;text-decoration:none;min-width:0;}
+.nav-logo svg{width:36px;height:36px;flex-shrink:0;}
+.logo-name{display:block;font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;color:var(--cream);line-height:1.1;white-space:nowrap;}
+.logo-sub{display:block;font-size:.55rem;font-weight:400;letter-spacing:.16em;color:var(--sage);text-transform:uppercase;}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center;}
+.nav-links a{text-decoration:none;font-size:.78rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(245,240,232,.7);transition:color .25s;white-space:nowrap;}
+.nav-links a:hover{color:var(--lime);}
+.nav-cta{background:var(--gold)!important;color:var(--deep)!important;padding:.5rem 1.2rem;border-radius:2px;font-weight:600!important;}
+.nav-cta:hover{background:var(--lime)!important;}
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:38px;height:38px;background:none;border:none;cursor:pointer;padding:5px;flex-shrink:0;z-index:1001;}
+.hamburger span{display:block;height:2px;background:var(--cream);border-radius:2px;transition:all .28s ease;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mob-nav{display:none;position:fixed;inset:0;z-index:999;background:rgba(10,26,18,.98);flex-direction:column;align-items:center;justify-content:center;gap:.25rem;padding:5rem 2rem 3rem;}
+.mob-nav.open{display:flex;}
+.mob-nav a{text-decoration:none;width:100%;text-align:center;font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:600;color:var(--cream);padding:.75rem;border-radius:4px;transition:background .2s,color .2s;}
+.mob-nav a:active,.mob-nav a:hover{background:rgba(149,213,178,.1);color:var(--lime);}
+.mob-cta{background:var(--gold);color:var(--deep)!important;font-family:'DM Sans',sans-serif!important;font-size:1rem!important;font-weight:700!important;letter-spacing:.1em;text-transform:uppercase;margin-top:1rem;}
+.wa-float{position:fixed;bottom:1.5rem;right:1.5rem;z-index:900;width:54px;height:54px;border-radius:50%;background:#25D366;color:white;font-size:1.5rem;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 18px rgba(37,211,102,.45);transition:transform .2s;}
+.wa-float:hover{transform:scale(1.1);}
+
+/* ── HERO ── */
+.hero{min-height:100vh;background:var(--deep);display:grid;grid-template-columns:1fr 1fr;align-items:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 80% at 70% 50%,rgba(45,106,79,.22) 0%,transparent 70%),radial-gradient(ellipse 40% 60% at 10% 80%,rgba(149,213,178,.06) 0%,transparent 60%);}
+.hero-grid{position:absolute;inset:0;pointer-events:none;opacity:.04;background-image:linear-gradient(rgba(149,213,178,1) 1px,transparent 1px),linear-gradient(90deg,rgba(149,213,178,1) 1px,transparent 1px);background-size:60px 60px;}
+.hero-left{padding:8rem 3rem 4rem 5rem;position:relative;z-index:2;}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(149,213,178,.1);border:1px solid rgba(149,213,178,.28);padding:.38rem 1rem;border-radius:100px;margin-bottom:1.8rem;font-size:.7rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--lime);}
+.bdot{width:6px;height:6px;border-radius:50%;background:var(--sage);animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.6rem,4vw,4.6rem);font-weight:600;line-height:1.06;color:var(--cream);margin-bottom:1.4rem;}
+.hero h1 em{font-style:italic;color:var(--sage);font-family:'Playfair Display',serif;}
+.hero-desc{font-size:.96rem;line-height:1.85;color:rgba(245,240,232,.6);max-width:440px;margin-bottom:2rem;}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;}
+.btn-primary{background:var(--gold);color:var(--deep);padding:.85rem 1.8rem;border:none;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-block;transition:background .3s,transform .2s;}
+.btn-primary:hover{background:var(--lime);transform:translateY(-2px);}
+.btn-outline{border:1px solid rgba(149,213,178,.35);color:var(--lime);padding:.85rem 1.8rem;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-block;transition:all .3s;}
+.btn-outline:hover{background:rgba(149,213,178,.08);}
+.hero-stats{display:flex;gap:2rem;margin-top:3rem;padding-top:2.5rem;border-top:1px solid rgba(149,213,178,.1);flex-wrap:wrap;}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--gold);display:block;line-height:1;}
+.stat-label{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,240,232,.4);margin-top:.3rem;display:block;}
+.hero-right{height:100vh;display:flex;align-items:center;justify-content:center;}
+.pv{width:380px;height:380px;position:relative;}
+.pr{position:absolute;border-radius:50%;border:1px solid rgba(149,213,178,.12);animation:spin linear infinite;}
+.pr:nth-child(1){inset:0;animation-duration:44s;}
+.pr:nth-child(2){inset:44px;animation-duration:30s;animation-direction:reverse;border-color:rgba(201,168,76,.1);}
+.pr:nth-child(3){inset:88px;animation-duration:20s;}
+.pc{position:absolute;inset:108px;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(45,106,79,.95),rgba(14,34,24,1));box-shadow:0 0 60px rgba(45,106,79,.35),0 0 110px rgba(45,106,79,.12);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem;}
+.pc .ci{font-size:2.8rem;}
+.pc small{font-size:.58rem;letter-spacing:.2em;color:var(--sage);text-transform:uppercase;}
+.orb{position:absolute;border-radius:50%;top:50%;left:50%;}
+.ob1{width:10px;height:10px;margin:-5px;background:var(--gold);box-shadow:0 0 14px var(--gold);animation:ob1 14s linear infinite;}
+.ob2{width:7px;height:7px;margin:-3.5px;background:var(--sage);box-shadow:0 0 10px var(--sage);animation:ob2 22s linear infinite reverse;}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes ob1{from{transform:rotate(0deg) translateX(190px) rotate(0deg)}to{transform:rotate(360deg) translateX(190px) rotate(-360deg)}}
+@keyframes ob2{from{transform:rotate(0deg) translateX(150px) rotate(0deg)}to{transform:rotate(360deg) translateX(150px) rotate(-360deg)}}
+
+/* ── MARQUEE ── */
+.mq-bar{background:var(--leaf);padding:.82rem 0;overflow:hidden;border-top:1px solid rgba(149,213,178,.2);border-bottom:1px solid rgba(149,213,178,.2);}
+.mq-track{display:flex;gap:3.5rem;white-space:nowrap;animation:mq 22s linear infinite;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,240,232,.85);font-weight:500;}
+.mq-item::before{content:'◆ ';color:var(--gold);}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── SHARED ── */
+.sec{padding:6rem 5rem;}
+.sec-tag{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--sage);font-weight:600;margin-bottom:.9rem;display:flex;align-items:center;gap:.75rem;}
+.sec-tag::before{content:'';display:block;width:28px;height:1px;background:var(--sage);}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,3vw,2.9rem);font-weight:600;line-height:1.12;margin-bottom:1.1rem;color:var(--forest);}
+.sec-sub{font-size:.94rem;line-height:1.85;color:var(--muted);max-width:540px;}
+
+/* ── ABOUT ── */
+.about-sec{background:var(--cream);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.about-vis{position:relative;height:460px;}
+.about-main{position:absolute;inset:0;border-radius:4px;overflow:hidden;background:linear-gradient(145deg,var(--forest),var(--leaf) 60%,#3a8a65);display:flex;align-items:center;justify-content:center;}
+.about-main svg{width:100%;height:100%;}
+.about-yr{position:absolute;bottom:-1rem;right:-1.5rem;width:175px;background:var(--gold);padding:1.4rem 1.6rem;box-shadow:0 18px 40px rgba(0,0,0,.18);border-radius:3px;}
+.about-yr .yr{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:700;color:var(--deep);line-height:1;}
+.about-yr p{font-size:.74rem;color:rgba(14,34,24,.65);font-weight:500;margin-top:.3rem;}
+.about-loc{position:absolute;top:-.8rem;left:-1rem;background:var(--deep);padding:.85rem 1.1rem;border-radius:3px;font-size:.7rem;color:var(--lime);line-height:1.55;box-shadow:0 10px 28px rgba(0,0,0,.25);max-width:175px;}
+.about-loc strong{display:block;color:var(--cream);font-size:.76rem;margin-bottom:.2rem;}
+.about-feats{margin-top:1.8rem;display:flex;flex-direction:column;gap:.85rem;}
+.a-feat{display:flex;gap:1rem;align-items:flex-start;padding:.95rem 1.1rem;border-left:2px solid var(--sage);background:white;border-radius:0 4px 4px 0;}
+.fi{width:34px;height:34px;flex-shrink:0;background:rgba(45,106,79,.08);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.95rem;}
+.ft strong{display:block;font-size:.85rem;font-weight:600;color:var(--forest);}
+.ft span{font-size:.78rem;color:var(--muted);}
+
+/* ── PRODUCTS ── */
+.prod-sec{background:var(--warm);}
+.prod-hdr{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem;gap:1.5rem;flex-wrap:wrap;}
+.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;}
+.pcard{background:white;border-radius:5px;overflow:hidden;border:1px solid rgba(0,0,0,.055);transition:transform .3s,box-shadow .3s;}
+.pcard:hover{transform:translateY(-7px);box-shadow:0 22px 48px rgba(0,0,0,.1);}
+.pimg{height:200px;display:flex;align-items:center;justify-content:center;font-size:4.2rem;position:relative;overflow:hidden;}
+.pimg::after{content:'';position:absolute;bottom:0;left:0;right:0;height:55px;background:linear-gradient(transparent,rgba(0,0,0,.22));}
+.pw{background:linear-gradient(135deg,#1e3c1e,#2d6a3a,#4a8a52);}
+.pr2{background:linear-gradient(135deg,#3a2e10,#7a6030,#b89050);}
+.pp{background:linear-gradient(135deg,#2a3a10,#4a6a20,#7a9a40);}
+.ptag{position:absolute;top:.9rem;right:.9rem;z-index:1;background:rgba(201,168,76,.92);color:var(--deep);font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.26rem .65rem;border-radius:100px;}
+.pbody{padding:1.4rem;}
+.pbody h3{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;color:var(--forest);margin-bottom:.45rem;}
+.pbody p{font-size:.81rem;color:var(--muted);line-height:1.65;margin-bottom:1rem;}
+.pspecs{display:flex;gap:.45rem;flex-wrap:wrap;}
+.schip{background:rgba(45,106,79,.07);color:var(--leaf);font-size:.66rem;font-weight:500;padding:.23rem .6rem;border-radius:100px;border:1px solid rgba(45,106,79,.18);}
+.pcta{display:block;margin-top:1.1rem;text-align:center;padding:.62rem;background:var(--forest);color:var(--cream);font-size:.74rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background .25s;}
+.pcta:hover{background:var(--leaf);}
+
+/* ── RAW ── */
+.raw-sec{background:var(--cream);}
+.raw-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2.5rem;}
+.rcard{background:white;padding:1.8rem;border-radius:4px;text-align:center;border:1px solid rgba(0,0,0,.055);transition:transform .28s,box-shadow .28s;}
+.rcard:hover{transform:translateY(-5px);box-shadow:0 16px 38px rgba(0,0,0,.08);}
+.ri{font-size:2.8rem;margin-bottom:.9rem;}
+.rcard h4{font-family:'Cormorant Garamond',serif;font-size:1.28rem;font-weight:600;color:var(--forest);margin-bottom:.45rem;}
+.rcard p{font-size:.81rem;color:var(--muted);line-height:1.65;}
+.rorg{display:inline-block;margin-top:.85rem;font-size:.66rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--leaf);background:rgba(45,106,79,.07);padding:.28rem .75rem;border-radius:100px;border:1px solid rgba(45,106,79,.18);}
+
+/* ── WHY ── */
+.why-sec{background:var(--forest);position:relative;overflow:hidden;}
+.why-sec::before{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(-45deg,rgba(149,213,178,.025) 0,rgba(149,213,178,.025) 1px,transparent 1px,transparent 50px);}
+.why-sec .sec-title{color:var(--cream);}
+.why-sec .sec-tag{color:var(--lime);}
+.why-sec .sec-tag::before{background:var(--lime);}
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem;}
+.wcard{padding:1.8rem;border:1px solid rgba(149,213,178,.1);border-radius:4px;transition:border-color .28s,background .28s;}
+.wcard:hover{border-color:rgba(149,213,178,.3);background:rgba(149,213,178,.04);}
+.wnum{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:700;color:#ffffff;line-height:1;margin-bottom:.75rem;}
+.wico{font-size:1.6rem;margin-bottom:.85rem;}
+.wcard h4{font-size:.9rem;font-weight:600;color:var(--cream);margin-bottom:.5rem;}
+.wcard p{font-size:.79rem;color:rgba(245,240,232,.48);line-height:1.72;}
+
+/* ── MARKETS ── */
+.mkt-sec{background:var(--warm);}
+.mkt-top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2.5rem;flex-wrap:wrap;gap:1rem;}
+.mkt-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;}
+.mpanel{border-radius:5px;padding:2.2rem;position:relative;overflow:hidden;transition:transform .3s;}
+.mpanel:hover{transform:scale(1.018);}
+.mi{background:linear-gradient(145deg,var(--forest),var(--leaf) 120%);}
+.me{background:linear-gradient(145deg,#162540,#2a4a7a 120%);}
+.mpanel::after{content:'';position:absolute;bottom:-50px;right:-50px;width:180px;height:180px;border-radius:50%;border:45px solid rgba(255,255,255,.04);pointer-events:none;}
+.mflag{font-size:2.5rem;margin-bottom:.9rem;display:block;}
+.mpanel h3{font-family:'Cormorant Garamond',serif;font-size:1.75rem;font-weight:600;color:white;margin-bottom:.7rem;}
+.mpanel p{font-size:.83rem;color:rgba(255,255,255,.6);line-height:1.75;margin-bottom:1.4rem;}
+.mitems{display:flex;flex-direction:column;gap:.5rem;}
+.mitem{display:flex;align-items:center;gap:.55rem;font-size:.79rem;color:rgba(255,255,255,.78);}
+.mitem::before{content:'→';color:var(--gold);font-weight:700;}
+
+/* ── DEMAND ── */
+.dem-sec{background:var(--cream);}
+.dem-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:4rem;align-items:start;}
+.dem-note{margin-top:1.5rem;padding:1rem 1.2rem;border-left:2px solid var(--gold);background:rgba(201,168,76,.07);border-radius:0 4px 4px 0;font-size:.8rem;color:var(--forest);line-height:1.7;}
+.dem-note strong{color:var(--leaf);}
+.poll-box{background:white;border-radius:5px;padding:1.8rem;border:1px solid rgba(0,0,0,.05);box-shadow:0 4px 28px rgba(0,0,0,.05);}
+.poll-box h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--forest);margin-bottom:.4rem;}
+.poll-box>p{font-size:.8rem;color:var(--muted);margin-bottom:1.4rem;line-height:1.6;}
+.popts{display:flex;flex-direction:column;gap:.8rem;margin-bottom:1.1rem;}
+.popt{display:flex;align-items:center;gap:.7rem;cursor:pointer;padding:.7rem .95rem;border-radius:3px;border:1.5px solid rgba(0,0,0,.08);font-size:.83rem;color:var(--text);font-weight:500;user-select:none;transition:border-color .2s,background .2s;}
+.popt input{display:none;}
+.popt.sel{border-color:var(--sage);background:rgba(82,183,136,.07);color:var(--forest);}
+.rdot{width:15px;height:15px;border-radius:50%;flex-shrink:0;border:2px solid rgba(0,0,0,.18);transition:all .2s;}
+.popt.sel .rdot{border-color:var(--sage);background:var(--sage);}
+.pico{font-size:1.1rem;}
+.pnote{font-size:.7rem;color:var(--muted);margin-bottom:1.1rem;}
+.pbtn{width:100%;padding:.82rem;background:var(--forest);color:var(--cream);border:none;border-radius:3px;font-family:'DM Sans',sans-serif;font-size:.81rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .25s;}
+.pbtn:hover{background:var(--leaf);}
+.poll-ty{display:none;background:white;border-radius:5px;padding:2rem;border:1px solid rgba(0,0,0,.05);text-align:center;}
+.poll-ty .tyico{font-size:2.4rem;margin-bottom:.9rem;}
+.poll-ty h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--forest);margin-bottom:.7rem;}
+.poll-ty p{font-size:.84rem;color:var(--muted);line-height:1.7;margin-bottom:1.4rem;}
+
+/* ── CERTS ── */
+.certs{background:white;padding:2.2rem 5rem;display:flex;align-items:center;justify-content:center;gap:2.5rem;flex-wrap:wrap;border-top:1px solid rgba(0,0,0,.05);border-bottom:1px solid rgba(0,0,0,.05);}
+.cl{font-size:.67rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
+.cdiv{width:1px;height:28px;background:rgba(0,0,0,.1);}
+.cbadges{display:flex;gap:2rem;align-items:center;flex-wrap:wrap;}
+.cbadge{display:flex;align-items:center;gap:.5rem;font-size:.76rem;font-weight:600;color:var(--forest);}
+.cbadge span{font-size:1.25rem;}
+
+/* ── CONTACT ── */
+.con-sec{background:var(--warm);}
+.con-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:4.5rem;align-items:start;}
+.con-info>p{font-size:.93rem;line-height:1.85;color:var(--muted);margin:.9rem 0 1.8rem;}
+.con-details{display:flex;flex-direction:column;gap:1.1rem;}
+.citem{display:flex;gap:.9rem;align-items:flex-start;}
+.cico{width:38px;height:38px;flex-shrink:0;background:var(--forest);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.95rem;}
+.ctxt strong{display:block;font-size:.76rem;font-weight:600;color:var(--forest);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.2rem;}
+.ctxt span{font-size:.84rem;color:var(--muted);line-height:1.6;}
+.ctxt a{color:var(--leaf);text-decoration:none;}
+.cform{background:white;padding:2.2rem;border-radius:5px;box-shadow:0 4px 38px rgba(0,0,0,.06);border:1px solid rgba(0,0,0,.05);}
+.cform h3{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:600;color:var(--forest);margin-bottom:1.6rem;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;}
+.fg{margin-bottom:1rem;}
+.fg label{display:block;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--forest);margin-bottom:.42rem;}
+.fg input,.fg select,.fg textarea{width:100%;padding:.72rem .95rem;border:1.5px solid rgba(0,0,0,.09);border-radius:3px;font-family:'DM Sans',sans-serif;font-size:.85rem;color:var(--text);background:var(--warm);outline:none;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;appearance:none;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--sage);box-shadow:0 0 0 3px rgba(82,183,136,.1);}
+.fg textarea{resize:vertical;min-height:90px;}
+.fsub{width:100%;padding:.95rem;background:var(--forest);color:var(--cream);border:none;border-radius:3px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;transition:background .28s;}
+.fsub:hover{background:var(--leaf);}
+.succ{display:none;text-align:center;padding:2.2rem 1rem;}
+.succ .sico{font-size:2.4rem;display:block;margin-bottom:.7rem;}
+.succ p{font-size:.9rem;color:var(--leaf);font-weight:500;line-height:1.75;}
+.succ strong{color:var(--forest);}
+
+/* ── FOOTER ── */
+footer{background:var(--deep);padding:3.5rem 5rem 2rem;border-top:1px solid rgba(149,213,178,.08);}
+.fg-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;margin-bottom:2.5rem;}
+.fb-name{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:700;color:var(--cream);}
+.fb-sub{font-size:.66rem;color:var(--sage);letter-spacing:.12em;text-transform:uppercase;margin:.2rem 0 .9rem;display:block;}
+.fb p{font-size:.79rem;color:rgba(245,240,232,.4);line-height:1.85;max-width:240px;}
+.fcol h5{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--sage);font-weight:600;margin-bottom:1.1rem;}
+.fcol ul{list-style:none;display:flex;flex-direction:column;gap:.65rem;}
+.fcol a{text-decoration:none;font-size:.8rem;color:rgba(245,240,232,.45);transition:color .2s;}
+.fcol a:hover{color:var(--lime);}
+.fbot{padding-top:1.8rem;border-top:1px solid rgba(149,213,178,.07);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem;}
+.fbot p{font-size:.74rem;color:rgba(245,240,232,.27);}
+
+/* ════ TABLET ════ */
+@media(max-width:1024px){
+  nav{padding:.9rem 2rem;}
+  .hero-left{padding:7rem 2.5rem 4rem;}
+  .sec{padding:5rem 3rem;}
+  .about-grid{gap:3rem;}
+  .why-grid{grid-template-columns:repeat(2,1fr);}
+  .fg-grid{grid-template-columns:1.5fr 1fr 1fr;}
+  .fg-grid .fcol:last-child{grid-column:span 1;}
+  .certs{padding:2rem 3rem;gap:2rem;}
+  footer{padding:3rem 3rem 2rem;}
+}
+
+/* ════ MOBILE ════ */
+@media(max-width:768px){
+  nav{padding:.85rem 1.1rem;}
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .logo-name{font-size:.92rem;}
+  .logo-sub{display:none;}
+
+  .hero{grid-template-columns:1fr;align-items:flex-start;}
+  .hero-left{padding:6rem 1.2rem 3rem;}
+  .hero h1{font-size:clamp(2rem,7.5vw,2.8rem);}
+  .hero-desc{font-size:.88rem;max-width:100%;margin-bottom:1.6rem;}
+  .hero-actions{flex-direction:column;}
+  .hero-actions .btn-primary,.hero-actions .btn-outline{text-align:center;width:100%;}
+  .hero-right{display:none;}
+  .hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem;padding-top:2rem;}
+  .stat-num{font-size:1.6rem;}
+
+  .sec{padding:3rem 1.2rem;}
+  .sec-title{font-size:clamp(1.65rem,5.5vw,2.1rem);}
+  .sec-sub{max-width:100%;}
+
+  .about-grid{grid-template-columns:1fr;gap:0;}
+  .about-vis{height:240px;margin-bottom:4.5rem;}
+  .about-yr{bottom:-3.8rem;right:.5rem;width:145px;padding:1rem 1.2rem;}
+  .about-yr .yr{font-size:2.1rem;}
+  .about-loc{top:.6rem;left:.5rem;font-size:.66rem;padding:.65rem .85rem;max-width:155px;}
+
+  .prod-hdr{flex-direction:column;align-items:flex-start;}
+  .prod-grid{grid-template-columns:1fr;gap:1.1rem;}
+  .pimg{height:165px;}
+
+  .raw-grid{grid-template-columns:1fr;gap:1rem;}
+  .rcard{padding:1.4rem;}
+
+  .why-grid{grid-template-columns:1fr;gap:1rem;margin-top:2rem;}
+  .wcard{padding:1.4rem;}
+
+  .mkt-top{flex-direction:column;align-items:flex-start;}
+  .mkt-grid{grid-template-columns:1fr;gap:1.1rem;}
+  .mpanel{padding:1.6rem;}
+  .mpanel h3{font-size:1.5rem;}
+
+  .dem-grid{grid-template-columns:1fr;gap:2rem;}
+  .poll-box{padding:1.4rem;}
+  .popt{font-size:.79rem;padding:.62rem .8rem;}
+
+  .certs{padding:1.6rem 1.2rem;flex-direction:column;align-items:flex-start;gap:1rem;}
+  .cdiv{display:none;}
+  .cbadges{gap:.9rem;}
+
+  .con-grid{grid-template-columns:1fr;gap:2.2rem;}
+  .cform{padding:1.4rem;}
+  .frow{grid-template-columns:1fr;}
+
+  footer{padding:2.5rem 1.2rem 1.8rem;}
+  .fg-grid{grid-template-columns:1fr;gap:1.8rem;margin-bottom:1.8rem;}
+  .fb p{max-width:100%;}
+  .fbot{flex-direction:column;align-items:flex-start;gap:.4rem;}
+}
+
+/* ════ SMALL PHONES ════ */
+@media(max-width:380px){
+  nav{padding:.75rem .9rem;}
+  .logo-name{font-size:.82rem;}
+  .hero h1{font-size:1.9rem;}
+  .hero-badge{font-size:.6rem;}
+  .hero-stats{gap:.7rem;}
+  .stat-num{font-size:1.4rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a class="nav-logo" href="#home">
+    <svg viewBox="0 0 38 38" fill="none">
+      <circle cx="19" cy="19" r="19" fill="rgba(45,106,79,0.28)"/>
+      <path d="M19 7C19 7 30 14 30 23C30 28.5 25 32 19 32C13 32 8 28.5 8 23C8 14 19 7 19 7Z" fill="#52b788"/>
+      <path d="M19 32C19 32 17 23 21 16" stroke="#95d5b2" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="19" cy="11" r="1.5" fill="#c9a84c"/>
+    </svg>
+    <div>
+      <span class="logo-name">Gangotri Agrifoods Pvt. Ltd.</span>
+      <small class="logo-sub">Biomass Energy · Chirchari, Chhattisgarh</small>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#products">Products</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#markets">Markets</a></li>
+    <li><a href="#demand">Demand Poll</a></li>
+    <li><a href="#contact" class="nav-cta">Enquire Now</a></li>
+  </ul>
+  <button class="hamburger" id="ham" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mob-nav" id="mob-nav">
+  <a href="#products" onclick="closeMenu()">Products</a>
+  <a href="#about"    onclick="closeMenu()">About Us</a>
+  <a href="#raw"      onclick="closeMenu()">Raw Materials</a>
+  <a href="#markets"  onclick="closeMenu()">Markets</a>
+  <a href="#demand"   onclick="closeMenu()">Demand Poll</a>
+  <a href="#contact"  onclick="closeMenu()" class="mob-cta">Enquire Now</a>
+</div>
+
+<!-- WHATSAPP -->
+<a class="wa-float" href="https://wa.me/919425235244" target="_blank" rel="noopener" title="WhatsApp Us">💬</a>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-grid"></div>
+  <div class="hero-left">
+    <div class="hero-badge"><span class="bdot"></span>Chhattisgarh's Biomass Pellet Pioneer</div>
+    <h1>Turning <em>Agrowaste &amp; Forestry Residues</em> Into<br>Clean Fuel</h1>
+    <p class="hero-desc">Gangotri Agrifoods Pvt. Ltd. manufactures premium biomass pellets from wood, rice husk, and paddy straw (parali) — supplying India's industries and the world's energy markets with sustainable, high-performance fuel.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Get a Quote</a>
+      <a href="#products" class="btn-outline">Our Products</a>
+    </div>
+    <div class="hero-stats">
+      <div><span class="stat-num">03</span><span class="stat-label">Core Products</span></div>
+      <div><span class="stat-num">2022</span><span class="stat-label">Est. in India</span></div>
+      <div><span class="stat-num">Pan-IN</span><span class="stat-label">Domestic Supply</span></div>
+      <div><span class="stat-num">Global</span><span class="stat-label">Export Ready</span></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="pv">
+      <div class="pr"></div><div class="pr"></div><div class="pr"></div>
+      <div class="pc"><span class="ci">🌿</span><small>Biomass Pellets</small></div>
+      <div class="orb ob1"></div><div class="orb ob2"></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mq-bar">
+  <div class="mq-track">
+    <span class="mq-item">Wood Pellets</span><span class="mq-item">Rice Husk Pellets</span><span class="mq-item">Paddy Straw Pellets</span><span class="mq-item">Biomass Energy</span><span class="mq-item">Chirchari · Chhattisgarh</span><span class="mq-item">Clean Fuel Solutions</span><span class="mq-item">Domestic Supply</span><span class="mq-item">Export Ready</span><span class="mq-item">Carbon Neutral</span><span class="mq-item">Wood Pellets</span><span class="mq-item">Rice Husk Pellets</span><span class="mq-item">Paddy Straw Pellets</span><span class="mq-item">Biomass Energy</span><span class="mq-item">Chirchari · Chhattisgarh</span><span class="mq-item">Clean Fuel Solutions</span><span class="mq-item">Domestic Supply</span><span class="mq-item">Export Ready</span><span class="mq-item">Carbon Neutral</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="sec about-sec" id="about">
+  <div class="about-grid">
+    <div class="about-vis fade-up">
+      <div class="about-main">
+        <svg viewBox="0 0 400 480" fill="none">
+          <circle cx="200" cy="210" r="140" fill="rgba(149,213,178,0.07)" stroke="rgba(149,213,178,0.18)" stroke-width="1"/>
+          <circle cx="200" cy="210" r="100" fill="rgba(149,213,178,0.05)" stroke="rgba(149,213,178,0.12)" stroke-width="1"/>
+          <ellipse cx="155" cy="195" rx="30" ry="12" fill="rgba(149,213,178,0.72)" transform="rotate(-15 155 195)"/>
+          <ellipse cx="200" cy="175" rx="32" ry="12" fill="rgba(82,183,136,0.82)" transform="rotate(10 200 175)"/>
+          <ellipse cx="245" cy="200" rx="28" ry="11" fill="rgba(149,213,178,0.65)" transform="rotate(-8 245 200)"/>
+          <ellipse cx="170" cy="228" rx="30" ry="12" fill="rgba(45,106,79,0.92)" transform="rotate(20 170 228)"/>
+          <ellipse cx="218" cy="225" rx="27" ry="11" fill="rgba(82,183,136,0.78)" transform="rotate(-12 218 225)"/>
+          <ellipse cx="197" cy="252" rx="29" ry="11" fill="rgba(149,213,178,0.62)" transform="rotate(5 197 252)"/>
+          <path d="M60 380 Q200 320 340 380" stroke="rgba(149,213,178,0.22)" stroke-width="1" fill="none"/>
+          <path d="M40 410 Q200 340 360 410" stroke="rgba(149,213,178,0.14)" stroke-width="1" fill="none"/>
+          <text x="200" y="445" font-family="serif" font-size="14" fill="rgba(149,213,178,0.55)" text-anchor="middle" letter-spacing="4">GANGOTRI AGRIFOODS</text>
+          <text x="200" y="462" font-family="sans-serif" font-size="8" fill="rgba(149,213,178,0.3)" text-anchor="middle" letter-spacing="3">CHIRCHARI (BALOD) · CHHATTISGARH</text>
+        </svg>
+      </div>
+      <div class="about-yr"><div class="yr">2022</div><p>Founded in Chhattisgarh with a mission for clean energy</p></div>
+      <div class="about-loc"><strong>📍 Head Office</strong>Gangotri Agrifoods Pvt. Ltd,<br>Chirchari, Balod,<br>CG — 491557</div>
+    </div>
+    <div class="fade-up">
+      <div class="sec-tag">Our Story</div>
+      <h2 class="sec-title">Born from Chhattisgarh's Agricultural Heart</h2>
+      <p class="sec-sub">Founded in 2022 in Chirchari, Balod, Chhattisgarh, Gangotri Agrifoods Pvt. Ltd. was built on a simple idea: India's abundant agricultural waste and forestry residue should power India's growth, not pollute it.</p>
+      <p class="sec-sub" style="margin-top:.9rem">We convert locally sourced wood, rice husk, and paddy straw (parali) into premium biomass pellets, serving industrial buyers across India and export markets worldwide.</p>
+      <div class="about-feats">
+        <div class="a-feat"><div class="fi">🌾</div><div class="ft"><strong>Parali &amp; Agro-Waste Utilization</strong><span>Turning paddy straw that would otherwise be burned in fields into valuable clean fuel</span></div></div>
+        <div class="a-feat"><div class="fi">🪵</div><div class="ft"><strong>Sustainably Sourced Wood Biomass</strong><span>Responsibly procured wood from local sources — consistent quality, high calorific value</span></div></div>
+        <div class="a-feat"><div class="fi">🚚</div><div class="ft"><strong>Pan-India Supply + Export Ready</strong><span>Supplying domestic industries and packaging for international bulk &amp; container shipments</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="sec prod-sec" id="products">
+  <div class="prod-hdr">
+    <div><div class="sec-tag">What We Make</div><h2 class="sec-title">Our Pellet Products</h2></div>
+    <p style="max-width:280px;font-size:.85rem;color:var(--muted);line-height:1.75">Three focused, high-quality products — available for domestic delivery across India and bulk export worldwide.</p>
+  </div>
+  <div class="prod-grid">
+    <div class="pcard fade-up">
+      <div class="pimg pw"><span>🪵</span><span class="ptag">Best Seller</span></div>
+      <div class="pbody">
+        <h3>Wood Pellets</h3>
+        <p>Premium hardwood biomass pellets with low ash content and high calorific value. Ideal for industrial boilers, power generation, and heating systems. A direct coal substitute.</p>
+        <div class="pspecs"><span class="schip">≥4200 kcal/kg</span><span class="schip">&lt;14% Moisture</span><span class="schip">6mm / 8mm</span><span class="schip">&lt;1% Ash</span></div>
+        <a href="#contact" class="pcta">Enquire →</a>
+      </div>
+    </div>
+    <div class="pcard fade-up">
+      <div class="pimg pr2"><span>🌾</span><span class="ptag">Export Ready</span></div>
+      <div class="pbody">
+        <h3>Rice Husk Pellets</h3>
+        <p>Made from rice husk — an abundant agro-residue in India. High silica content and excellent combustion properties make these pellets ideal for boilers, kilns, and co-generation plants.</p>
+        <div class="pspecs"><span class="schip">≥3200 kcal/kg</span><span class="schip">Low Emission</span><span class="schip">6mm / 8mm</span><span class="schip">High Silica</span></div>
+        <a href="#contact" class="pcta">Enquire →</a>
+      </div>
+    </div>
+    <div class="pcard fade-up">
+      <div class="pimg pp"><span>🌾</span><span class="ptag">Eco Impact</span></div>
+      <div class="pbody">
+        <h3>Paddy Straw Pellets</h3>
+        <p>Produced from paddy straw (parali) — the crop residue traditionally burned in fields causing severe air pollution. We turn this environmental problem into a clean energy solution.</p>
+        <div class="pspecs"><span class="schip">≥3400 kcal/kg</span><span class="schip">Paddy Straw</span><span class="schip">6mm</span><span class="schip">Zero Stubble Burn</span></div>
+        <a href="#contact" class="pcta">Enquire →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RAW MATERIALS -->
+<section class="sec raw-sec" id="raw">
+  <div class="sec-tag">Our Inputs</div>
+  <h2 class="sec-title">Raw Materials We Work With</h2>
+  <p class="sec-sub">Every raw material we use is either an agricultural byproduct or sustainably sourced — making our pellets genuinely carbon-neutral and eco-friendly.</p>
+  <div class="raw-grid">
+    <div class="rcard fade-up"><div class="ri">🪵</div><h4>Wood Biomass</h4><p>Locally sourced wood chips, sawdust, and forest residue from responsibly managed sources in and around Chhattisgarh. Delivers the highest calorific value.</p><span class="rorg">Forest Residues · Chhattisgarh</span></div>
+    <div class="rcard fade-up"><div class="ri">🌾</div><h4>Rice Husk</h4><p>A byproduct of rice milling — massively available across India. Instead of dumping or burning, we pelletize it into consistent, usable fuel for industry.</p><span class="rorg">Rice Mills · CG &amp; surrounding states</span></div>
+    <div class="rcard fade-up"><div class="ri">🌾</div><h4>Parali (Paddy Straw)</h4><p>Post-harvest paddy straw — one of India's biggest sources of open-field burning and air pollution. We procure directly from farmers, giving them a sustainable livelihood alternative.</p><span class="rorg">Farmers · Chhattisgarh &amp; Central India</span></div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="sec why-sec" id="why">
+  <div class="sec-tag">Why Gangotri</div>
+  <h2 class="sec-title">The Gangotri Advantage</h2>
+  <div class="why-grid">
+    <div class="wcard fade-up"><div class="wnum">01</div><div class="wico">🏭</div><h4>Dedicated Manufacturing Facility</h4><p>Our pelletizing plant at Gangotri Agrifoods, Chirchari, Balod ensures quality-controlled production with consistent output every batch.</p></div>
+    <div class="wcard fade-up"><div class="wnum">02</div><div class="wico">🧪</div><h4>Assured Quality-Tested Output</h4><p>Pellets are tested for calorific value, moisture, ash content, and size uniformity. Test certificates available with every consignment.</p></div>
+    <div class="wcard fade-up"><div class="wnum">03</div><div class="wico">🤝</div><h4>Direct Farmer Procurement</h4><p>We buy parali and agro-residues directly from local farmers — ensuring supply chain transparency and fair price for growers.</p></div>
+    <div class="wcard fade-up"><div class="wnum">04</div><div class="wico">📦</div><h4>Flexible Order Sizes</h4><p>From trial samples to full container loads — we accommodate small domestic buyers and large international bulk orders alike.</p></div>
+  </div>
+</section>
+
+<!-- MARKETS -->
+<section class="sec mkt-sec" id="markets">
+  <div class="mkt-top">
+    <div><div class="sec-tag">Where We Serve</div><h2 class="sec-title">Domestic &amp; International</h2></div>
+    <p style="max-width:280px;font-size:.85rem;color:var(--muted);line-height:1.75">Whether you're an Indian factory or an international importer — we're ready to supply.</p>
+  </div>
+  <div class="mkt-grid">
+    <div class="mpanel mi fade-up">
+      <span class="mflag">🇮🇳</span>
+      <h3>India — Domestic Supply</h3>
+      <p>We supply across India to industries mandated to switch to cleaner biomass fuel under pollution control and green energy regulations.</p>
+      <div class="mitems">
+        <div class="mitem">Power &amp; Co-generation Plants</div>
+        <div class="mitem">Works with Every Boiler, Minimal Modifications Required</div>
+        <div class="mitem">Furnace Oil Substitutes &amp; Food Processing Plants</div>
+        <div class="mitem">Textile &amp; Dyeing Industries</div>
+        <div class="mitem">Paper &amp; Packaging Mills</div>
+      </div>
+    </div>
+    <div class="mpanel me fade-up">
+      <span class="mflag">🌍</span>
+      <h3>International Exports</h3>
+      <p>India is an emerging supplier of biomass pellets globally. We cater to importers and energy companies seeking reliable, certified Indian biomass.</p>
+      <div class="mitems">
+        <div class="mitem">Europe — UK, Germany, Netherlands, Denmark</div>
+        <div class="mitem">Middle East — UAE, Saudi Arabia, Qatar</div>
+        <div class="mitem">East Asia — South Korea, Japan</div>
+        <div class="mitem">South Asia — Bangladesh, Sri Lanka</div>
+        <div class="mitem">Other destinations on inquiry</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMAND POLL -->
+<section class="sec dem-sec" id="demand">
+  <div class="dem-grid">
+    <div class="fade-up">
+      <div class="sec-tag">Help Us Understand</div>
+      <h2 class="sec-title">Which Pellet Do You Need?</h2>
+      <p class="sec-sub">We're a young company eager to serve you better. Tell us which pellet product interests you most — this helps us understand national and international demand patterns and scale the right products for you.</p>
+      <div class="dem-note"><strong>Why are we asking?</strong><br>As a company founded in 2022, your input directly shapes our production priorities. The more responses we gather, the better we can align our capacity with real market demand — both domestically and for exports.</div>
+    </div>
+    <div class="fade-up">
+      <div class="poll-box" id="poll-box">
+        <h3>Cast Your Vote</h3>
+        <p>Which biomass pellet are you most interested in sourcing from us?</p>
+        <div class="popts">
+          <label class="popt" onclick="selectPoll(this,'wood')"><input type="radio" name="p"><div class="rdot"></div><span class="pico">🪵</span><span>Wood Pellets — High calorific value, all-purpose</span></label>
+          <label class="popt" onclick="selectPoll(this,'rice')"><input type="radio" name="p"><div class="rdot"></div><span class="pico">🌾</span><span>Rice Husk Pellets — Affordable, high availability</span></label>
+          <label class="popt" onclick="selectPoll(this,'parali')"><input type="radio" name="p"><div class="rdot"></div><span class="pico">🌾</span><span>Parali Pellets — Eco-friendly, zero stubble burn</span></label>
+          <label class="popt" onclick="selectPoll(this,'mix')"><input type="radio" name="p"><div class="rdot"></div><span class="pico">📦</span><span>Custom Mix / Multiple Products</span></label>
+        </div>
+        <p class="pnote">* Your preference will be pre-filled in the enquiry form below.</p>
+        <button class="pbtn" onclick="submitPoll()">Submit My Preference →</button>
+      </div>
+      <div class="poll-ty" id="poll-ty">
+        <div class="tyico">🙏</div>
+        <h3>Thank You!</h3>
+        <p>Your preference has been noted. Fill the enquiry form below to get a quote — we've pre-filled your product choice for you.</p>
+        <a href="#contact" class="btn-primary">Go to Enquiry Form →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<div class="certs">
+  <span class="cl">Pursuing Certifications</span>
+  <div class="cdiv"></div>
+  <div class="cbadges">
+    <div class="cbadge"><span>📜</span> GST Registered</div>
+    <div class="cbadge"><span>🏢</span> Udyam / MSME</div>
+    <div class="cbadge"><span>🚢</span> IEC — DGFT</div>
+    <div class="cbadge"><span>✅</span> ZED (Zero Defect (Quality))</div>
+    <div class="cbadge"><span>🌍</span> ENplus (Targeted)</div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="sec con-sec" id="contact">
+  <div class="con-grid">
+    <div class="fade-up">
+      <div class="sec-tag">Reach Out</div>
+      <h2 class="sec-title">Let's Talk Pellets</h2>
+      <div><p>Whether you're a domestic buyer, export trader, or energy company — we'd love to hear from you. Fill the form and we'll respond within 24 hours.</p></div>
+      <br>
+      <br>
+      <div class="con-details">
+        <div class="citem"><div class="cico">📍</div><div class="ctxt"><strong>Head Office</strong><span>Gangotri Agrifoods, Chirchari,<br>Balod, Chhattisgarh — 491557, India</span></div></div>
+        <div class="citem"><div class="cico">📞</div><div class="ctxt"><strong>Phone &amp; WhatsApp</strong><span><a href="tel:+919425235244">+91 94252 35244</a><br><a href="tel:+919243838127">+91 92438 38127</a></span></div></div>
+        <div class="citem"><div class="cico">📧</div><div class="ctxt"><strong>Email</strong><span>gangotriagrifood@gmail.com</span></div></div>
+        <div class="citem"><div class="cico">⏰</div><div class="ctxt"><strong>Business Hours</strong><span>Monday – Saturday, 9 AM – 6 PM IST</span></div></div>
+      </div>
+    </div>
+    <div class="cform fade-up">
+      <h3>Send an Enquiry</h3>
+      <form action="mailto:gangotriagrifood@gmail.com" method="post" enctype="text/plain" id="eq-form">
+        <div class="frow">
+          <div class="fg"><label>Your Name *</label><input type="text" name="name" id="fn" placeholder="Full Name" required></div>
+          <div class="fg"><label>Company Name</label><input type="text" name="company" id="fc" placeholder="Your Company"></div>
+        </div>
+        <div class="frow">
+          <div class="fg"><label>Email *</label><input type="email" name="email" id="fe" placeholder="email@company.com" required></div>
+          <div class="fg"><label>Phone / WhatsApp *</label><input type="tel" name="phone" id="fp" placeholder="+91 or international" required></div>
+        </div>
+        <div class="fg">
+          <label>Country / Region *</label>
+          <select name="country" id="fco" required>
+            <option value="">-- Select Your Country --</option>
+            <option>India</option><option>United Kingdom</option><option>Germany</option>
+            <option>Netherlands</option><option>Denmark</option><option>UAE</option>
+            <option>Saudi Arabia</option><option>Qatar</option><option>South Korea</option>
+            <option>Japan</option><option>Bangladesh</option><option>Sri Lanka</option><option>Other</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Product of Interest *</label>
+          <select name="product" id="fpr" required>
+            <option value="">-- Select Product --</option>
+            <option value="wood">Wood Pellets</option>
+            <option value="rice">Rice Husk Pellets</option>
+            <option value="parali">Parali Pellets</option>
+            <option value="mix">Custom Mix / Multiple Products</option>
+          </select>
+        </div>
+        <div class="frow">
+          <div class="fg"><label>Quantity (MT/month)</label><input type="text" name="quantity" id="fq" placeholder="e.g. 100 MT / 500 MT"></div>
+          <div class="fg">
+            <label>Enquiry Type</label>
+            <select name="type" id="ft">
+              <option>Domestic Purchase (India)</option>
+              <option>Export / Import</option>
+              <option>Sample Request</option>
+              <option>Trading / Distribution</option>
+              <option>General Information</option>
+            </select>
+          </div>
+        </div>
+        <div class="fg"><label>Message / Requirements</label><textarea name="message" id="fm" placeholder="Describe your requirements, pellet specs, delivery location, or any questions..."></textarea></div>
+        <input type="submit" class="fsub" value="Submit Enquiry →">
+      </form>
+      <div class="succ" id="succ">
+        <span class="sico">✅</span>
+        <p>Thank you for reaching out to Gangotri Agrifoods!<br>We'll respond within 24 hours.<br><br><strong>WhatsApp us directly:</strong><br>+91 94252 35244 &nbsp;|&nbsp; +91 92438 38127</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fg-grid">
+    <div class="fb">
+      <div class="fb-name">Gangotri Agrifoods Pvt. Ltd.</div>
+      <span class="fb-sub">Biomass Energy Solutions</span>
+      <p>Premium wood, rice husk, and parali pellet manufacturer based in Balod, Chhattisgarh. Supplying clean biomass fuel to India and the world since 2022.</p>
+    </div>
+    <div class="fcol">
+      <h5>Products</h5>
+      <ul>
+        <li><a href="#products">Wood Pellets</a></li>
+        <li><a href="#products">Rice Husk Pellets</a></li>
+        <li><a href="#products">Parali Pellets</a></li>
+        <li><a href="#contact">Request Sample</a></li>
+      </ul>
+    </div>
+    <div class="fcol">
+      <h5>Markets</h5>
+      <ul>
+        <li><a href="#markets">Domestic India</a></li>
+        <li><a href="#markets">Europe</a></li>
+        <li><a href="#markets">Middle East</a></li>
+        <li><a href="#markets">East &amp; South Asia</a></li>
+      </ul>
+    </div>
+    <div class="fcol">
+      <h5>Connect</h5>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#demand">Demand Poll</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+        <li><a href="tel:+919425235244">+91 94252 35244</a></li>
+        <li><a href="tel:+919243838127">+91 92438 38127</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fbot">
+    <p>© 2025 Gangotri Agrifoods Pvt. Ltd. · Chirchari, Balod, Chhattisgarh 491226</p>
+    <p>Biomass Energy for a Greener Tomorrow 🌿</p>
+  </div>
+</footer>
+
+<script>
+/* ── Mobile Menu ── */
+function toggleMenu(){
+  const m=document.getElementById('mob-nav'),b=document.getElementById('ham');
+  const o=m.classList.toggle('open');
+  b.classList.toggle('open',o);
+  document.body.style.overflow=o?'hidden':'';
+}
+function closeMenu(){
+  document.getElementById('mob-nav').classList.remove('open');
+  document.getElementById('ham').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+/* ── Scroll Animations ──
+   Strategy: elements start VISIBLE (no opacity:0 on load).
+   We add 'will-animate' class only via JS after page loads,
+   then use scroll to reveal them. This prevents blank content
+   if JS is slow or observer fails. */
+function initAnimations(){
+  var els = document.querySelectorAll('.fade-up');
+  els.forEach(function(el){
+    var rect = el.getBoundingClientRect();
+    // Only animate elements below the fold
+    if(rect.top > window.innerHeight){
+      el.classList.add('will-animate');
+    }
+  });
+  reveal();
+}
+function reveal(){
+  document.querySelectorAll('.fade-up.will-animate').forEach(function(el){
+    if(el.getBoundingClientRect().top < window.innerHeight * 0.93){
+      el.classList.add('visible');
+    }
+  });
+}
+window.addEventListener('scroll', reveal, {passive:true});
+window.addEventListener('resize', reveal);
+// Init after full load to get correct layout
+if(document.readyState==='complete'){ initAnimations(); }
+else { window.addEventListener('load', initAnimations); }
+// Ultimate fallback — make everything visible after 2s no matter what
+setTimeout(function(){
+  document.querySelectorAll('.fade-up').forEach(function(el){
+    el.classList.remove('will-animate');
+    el.classList.add('visible');
+  });
+}, 2000);
+
+/* ── Nav ── */
+window.addEventListener('scroll',function(){
+  document.getElementById('main-nav').style.background=
+    window.scrollY>60?'rgba(14,34,24,0.99)':'rgba(14,34,24,0.96)';
+},{passive:true});
+
+/* ── Poll ── */
+var selPoll='';
+function selectPoll(el,v){
+  document.querySelectorAll('.popt').forEach(function(o){o.classList.remove('sel');});
+  el.classList.add('sel'); selPoll=v;
+}
+function submitPoll(){
+  if(!selPoll){alert('Please select a preference first.');return;}
+  document.getElementById('poll-box').style.display='none';
+  document.getElementById('poll-ty').style.display='block';
+  var map={wood:'Wood Pellets',rice:'Rice Husk Pellets',parali:'Parali Pellets',mix:'Custom Mix / Multiple Products'};
+  var s=document.getElementById('fpr');
+  for(var i=0;i<s.options.length;i++){if(s.options[i].text===map[selPoll]){s.selectedIndex=i;break;}}
+}
+
+/* ── Enquiry Form ── */
+function submitEnq(){
+  var n=document.getElementById('fn').value.trim();
+  var e=document.getElementById('fe').value.trim();
+  var ph=document.getElementById('fp').value.trim();
+  var co=document.getElementById('fco').value;
+  var pr=document.getElementById('fpr').value;
+  if(!n||!e||!ph||!co||!pr){alert('Please fill in all required fields (marked with *).');return;}
+  document.getElementById('eq-form').style.display='none';
+  document.getElementById('succ').style.display='block';
+}
+</script>
+</body>
+</html>
